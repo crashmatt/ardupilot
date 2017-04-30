@@ -29,6 +29,7 @@ EXTRAFLAGS += -DNUTTX_GIT_VERSION="\"$(NUTTX_GIT_VERSION)\""
 EXTRAFLAGS += -DPX4_GIT_VERSION="\"$(PX4_GIT_VERSION)\""
 EXTRAFLAGS += -DUAVCAN=1
 EXTRAFLAGS += -D__STDC_FORMAT_MACROS
+EXTRAFLAGS += -DMIXER_CONFIGURATION
 
 # Add missing parts from libc and libstdc++
 EXTRAFLAGS += -DHAVE_STD_NULLPTR_T=0
@@ -179,7 +180,7 @@ px4-io-v1: $(PX4_ROOT)/Archives/px4io-v1.export
 
 
 px4-io-v2: $(PX4_ROOT)/Archives/px4io-v2.export
-	$(v)+ $(MAKE) -C $(PX4_ROOT) -f $(PX4_ROOT)/Makefile.make px4io-v2_default EXTRADEFINES="-DARDUPILOT_BUILD"
+	$(v)+ $(MAKE) -C $(PX4_ROOT) -f $(PX4_ROOT)/Makefile.make px4io-v2_default EXTRADEFINES="-DARDUPILOT_BUILD -DMIXER_CONFIGURATION -DMIXER_REMOTE"
 	$(v) cp $(PX4_ROOT)/Images/px4io-v2_default.bin px4io-v2.bin
 	$(v) cp $(PX4_ROOT)/Build/px4io-v2_default.build/firmware.elf px4io-v2.elf
 	$(v) mkdir -p $(MK_DIR)/PX4/ROMFS/px4io/
